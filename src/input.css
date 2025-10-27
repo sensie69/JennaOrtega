@@ -39,5 +39,15 @@ main{
     display: none;
 }
 
+#page2-h-1 {
+    top: 100%;
+    opacity: 0;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 
 

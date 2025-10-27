@@ -21,6 +21,8 @@
     --text-2xl--line-height: calc(2 / 1.5);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
+    --text-8xl: 6rem;
+    --text-8xl--line-height: 1;
     --font-weight-extralight: 200;
     --font-weight-bold: 700;
     --tracking-wide: 0.025em;
@@ -335,6 +337,10 @@
     font-size: var(--text-5xl);
     line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
+  .text-8xl {
+    font-size: var(--text-8xl);
+    line-height: var(--tw-leading, var(--text-8xl--line-height));
+  }
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
@@ -474,6 +480,14 @@ main {
 }
 #page1::-webkit-scrollbar {
   display: none;
+}
+#page2-h-1 {
+  top: 100%;
+  opacity: 0;
+  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 @property --tw-translate-x {
   syntax: "*";
