@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+:root {
+    --color-primary: #DD6C66;
+}
+main{
+    color: #d0adaf;
+}
+.inter {
+    font-family: "Inter", sans-serif;
+}
+.bodoni{
+    font-family: "Bodoni Moda", serif;
+
+}
+.bottom-left p a{
+    color: white;
+}
+.img-display{
+    transition: all ease-in-out 0.4s;
+}
+.img-fluid{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+#page1{
+    overflow-y: hidden;
+
+}
+.page2-first{
+    scale: 0;
+    opacity: 0;
+}
+
+#page1::-webkit-scrollbar {
+    display: none;
+}
+
+
+
