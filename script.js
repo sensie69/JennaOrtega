@@ -7,6 +7,7 @@ const allImages = [
 
 const threeNavLinks = document.querySelectorAll(".trends");
 
+// Image hover animations
 function imageAnims() {
   threeNavLinks.forEach((link, index) => {
     link.addEventListener("mouseenter", () => {
@@ -17,14 +18,17 @@ function imageAnims() {
 
       imgDisplay.classList.remove("hidden");
       imageAnimGsap(".img-fluid");
-
       imgDisplay.classList.add("block");
     });
   });
+  
   threeNavLinks.forEach((link, index) => {
     link.addEventListener("mouseleave", () => {
       imgDisplay.classList.remove("block");
-      imgDisplay.removeChild(imgDisplay.querySelector(".img-fluid"));
+      const fluidImg = imgDisplay.querySelector(".img-fluid");
+      if (fluidImg) {
+        imgDisplay.removeChild(fluidImg);
+      }
       imgDisplay.classList.add("hidden");
     });
   });
@@ -32,111 +36,154 @@ function imageAnims() {
 
 imageAnims();
 
-//Gsap Code Here //
+// GSAP image entrance animation
 function imageAnimGsap(imgClass) {
   gsap.from(imgClass, {
     duration: 0.5,
-    easing: "ease",
+    ease: "power2.out",
     y: 50,
     opacity: 0,
   });
 }
 
-// PAGE-2 ANIM BUT WITH THE IMAGE FROM PAGE-1//
-
-document.addEventListener("DOMContentLoaded", (event) => {
+// GSAP ScrollTrigger animations
+document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
-  const jennaIMG = document.querySelector(".jenna-img");
+
+  // Timeline 1: Page 1 to Page 2 transition
   const t1 = gsap.timeline({
     scrollTrigger: {
-      trigger: "page2",
-      start: "50% 95%",
-      end: "100% 80%",
-      // markers:true,
-      scrub: true,
-      easing: "ease",
+      trigger: "#page2",
+      start: "top bottom",
+      end: "top top",
+      scrub: 1,
+      // markers: true, // Uncomment for debugging
     },
   });
 
+  // Animate Jenna image scaling and positioning
   t1.to(
     ".jenna-img",
     {
       scale: 20,
       zIndex: 25,
       position: "fixed",
-      top: "58%",
-      left: "100%",
+      top: "50%",
+      left: "50%",
+      x: "-50%",
+      y: "-50%",
       duration: 1,
-      x: 0,
-      y: 0,
     },
-    "a"
+    "transition"
   );
 
-  t1.to(
-    "#page1",
-    {
-      overflowY: "visible",
-    },
-    "b"
-  );
+  // Fade out page 1 content
   t1.to(
     ".jenna-text",
     {
-      top: "-1%",
       opacity: 0,
+      y: -100,
+      duration: 0.8,
     },
-    "b"
+    "transition"
   );
+
   t1.to(
     ".bottom-left",
     {
-      top: "-1%",
       opacity: 0,
+      y: -100,
+      duration: 0.8,
     },
-    "b"
+    "transition"
   );
+
   t1.to(
     ".links",
     {
-      top: "-1%",
       opacity: 0,
-      duration: 1,
+      y: -100,
+      duration: 0.8,
     },
-    "b"
+    "transition"
   );
+
+  // Bring in page 2 first background
   t1.to(
     ".page2-first",
     {
       top: "0%",
-      opacity: 1,
-      duration: 1,
-      zIndex: 50,
       scale: 1,
+      opacity: 1,
       backgroundColor: "#000",
+      zIndex: 50,
+      duration: 1,
     },
-    "a"
+    "transition"
   );
 
-  //     page2-top //
+  // Timeline 2: Page 2 heading reveal
   const t2 = gsap.timeline({
     scrollTrigger: {
-      trigger: "body",
-      start: "start 40%", // Trigger when the top of .page2-first hits 80% from the window top
-      end: "bottom 80%",
-      markers: true,
-      scrub: true,
+      trigger: "#page2",
+      start: "top top",
+      end: "center top",
+      scrub: 1,
+      // markers: true, // Uncomment for debugging
     },
   });
-  t2.to("#page2-h-1", {
-    top: "10%",
-    left:"55%", // Visible zone
-    zIndex: 55,
-    opacity: 1,
-    duration: 1,
+
+  // Fade out the scaled Jenna image
+  t2.to(
+    ".jenna-img",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "reveal"
+  );
+
+  // Reveal page 2 first heading
+  t2.to(
+    "#page2-h-1",
+    {
+      top: "10%",
+      opacity: 1,
+      duration: 1,
+    },
+    "reveal"
+  );
+
+  // Timeline 3: Page 2 second heading reveal
+  const t3 = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#page2",
+      start: "center top",
+      end: "bottom top",
+      scrub: 1,
+      // markers: true, // Uncomment for debugging
+    },
   });
-  t2.to(".jenna-img", {
-    
-    display:"none"
-  });
+
+  // Fade out first heading
+  t3.to(
+    "#page2-h-1",
+    {
+      opacity: 0,
+      y: -50,
+      duration: 0.5,
+    },
+    "secondHeading"
+  );
+
+  // Reveal second heading
+  t3.to(
+    "#page2-h-2",
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+    },
+    "secondHeading+=0.3"
+  );
 });
