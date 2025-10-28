@@ -26,7 +26,6 @@
     --font-weight-extralight: 200;
     --font-weight-bold: 700;
     --tracking-wide: 0.025em;
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -232,6 +231,9 @@
   }
   .z-45 {
     z-index: 45;
+  }
+  .z-99 {
+    z-index: 99;
   }
   .block {
     display: block;
