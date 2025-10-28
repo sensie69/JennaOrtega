@@ -4,33 +4,44 @@
 :root {
     --color-primary: #DD6C66;
 }
-main{
+
+html,body{
+    width: 100%;
+    overflow-x: hidden;
+}
+
+main {
     color: #d0adaf;
 }
+
 .inter {
     font-family: "Inter", sans-serif;
 }
-.bodoni{
-    font-family: "Bodoni Moda", serif;
 
+.bodoni {
+    font-family: "Bodoni Moda", serif;
 }
-.bottom-left p a{
+
+.bottom-left p a {
     color: white;
 }
-.img-display{
+
+.img-display {
     transition: all ease-in-out 0.4s;
 }
-.img-fluid{
+
+.img-fluid {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 }
-#page1{
-    overflow-y: hidden;
 
+#page1 {
+    overflow-y: hidden;
 }
-.page2-first{
+
+.page2-first {
     scale: 0;
     opacity: 0;
 }
@@ -48,6 +59,49 @@ main{
     transform: translateX(-50%);
 }
 
+.banner {
+    width: 100vw;
+    height: 100svh;
+    background-color: #e3e3db;
+    color: #141414;
+    overflow: hidden;
+}
 
+.banner-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    will-change: transform;
+}
 
+.banner-image-container .img-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
 
+/* Apply mask directly to the img element, not the container */
+.banner-image-container .img-3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+}
+
+.banner-image-container .img-3.mask-img img {
+    /* Apply mask to the actual image */
+    -webkit-mask-image: url('../images/bg-3-mask.png');
+    mask-image: url('../images/bg-3-mask.png');
+    
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    
+    -webkit-mask-position: center;
+    mask-position: center;
+    
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
